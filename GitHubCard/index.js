@@ -6,10 +6,13 @@
 axios.get('https://api.github.com/users/elyssiawid')
   .then(function (response) {
     console.log(response);
+    createCard(response.data);
   })
   .catch(function (error) {
     console.log(error);
   });
+
+
 
  
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -22,7 +25,20 @@ axios.get('https://api.github.com/users/elyssiawid')
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
-
+const cards = document.querySelector('.cards');
+function createCard(data) {
+  const card = document.createElement('div')
+  const image = document.createElement ('img')
+  image.setAttribute('src', data.avatar_url)
+  const cardInfo = document.createElement('div')
+  const name = document.createElement('h3')
+  const username = document.createElement('p')
+  const location = document.createElement('p')
+  const profile = document.createElement('p')
+  const followers = document.createElement('p')
+  const following = document.createElement('p')
+  const bio = document.createElement('p')
+}
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
           , manually find some other users' github handles, or use the list found 
@@ -66,7 +82,7 @@ const followersArray = [];
 function createCard(data) {
   const card = document.createElement('div')
   const image = document.createElement ('img')
-  image.setAttribute('src')
+  image.setAttribute('src', data.avatar_url)
   const cardInfo = document.createElement('div')
   const name = document.createElement('h3')
   const username = document.createElement('p')
@@ -76,3 +92,19 @@ function createCard(data) {
   const following = document.createElement('p')
   const bio = document.createElement('p')
 }
+
+//add content to elements
+fullName.textContent = data [name];
+userName.textContent = data [login];
+userLocation.textContent = 'Location: ${data[location]}'
+userProfile.textContent = 'Profile: ${profileLink}';
+userFollowers.textContent = 'Followers: ${data[followers_url]}';
+userFollowing.textContent = 'Following: ${data[following_url]}';
+userBio.textContent = 'Bio: ${data[bio]}';
+
+profileLink.href = data[html_url];
+userImage.src = data[avatar_url];
+userImage.alt  'Image or avatar of Github user';
+
+return card;
+
